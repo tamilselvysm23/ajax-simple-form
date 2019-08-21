@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ajax</title>
+        <script src="jquery.js"></script>
+        <style>
+
+            *
+            {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+            body{
+                background: #d53369;  /* fallback for old browsers */
+                background: -webkit-linear-gradient(to right bottom, #cbad6d, #d53369);  /* Chrome 10-25, Safari 5.1-6 */
+                background: linear-gradient(to right bottom, #cbad6d, #d53369); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                height: 100vh;
+                line-height: 1.8;
+                font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                font-weight: 300;
+                
+
+            }
+        .container{
+            background-color: rgba(0, 0, 0, 0.1);
+            top:40%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%,-50%);
+            padding:60px;
+            text-align: center;
+            user-select: none;
+        }
+        .container input{
+            padding:10px;
+            margin: 10px;
+            width: 400px;
+            border:none;
+        }
+        .btn{
+            font-size: 14px;
+            background: #d53369;  /* fallback for old browsers */
+                background: -webkit-linear-gradient(to right bottom, #cbad6d, #d53369);  /* Chrome 10-25, Safari 5.1-6 */
+                background: linear-gradient(to right bottom, #cbad6d, #d53369); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            border: none;  
+            transition: 0.5s;   
+            opacity: 0.9;    
+            outline: none;
+        }
+        .btn::-moz-focus-inner {
+            border: 0;
+        }
+        .btn:hover
+        {
+            background: #d53369;  /* fallback for old browsers */
+                background: -webkit-linear-gradient(to right bottom, #d53369, #cbad6d);  /* Chrome 10-25, Safari 5.1-6 */
+                background: linear-gradient(to right bottom, #d53369, #cbad6d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                opacity: 1;
+        }
+        </style>
+
+    </head>
+<body>
+
+<div class="container">
+    <h1>Simple form</h1>
+    <input type="text" name="fname" id="fname" placeholder="Enter your name"><br>
+    <input type="email" name="email" id="email" placeholder="Enter your email"><br>
+    <input type="password" name="password" id="password" placeholder="Enter your password"><br>
+    <input type="submit" name="submit" id="submit" value="Submit" class="btn">
+    <div id="result"></div>
+</div>
+
+<script>
+        $(document).ready (function(){
+            $("#submit").click(function(){
+                var user_name = $("#fname").val();
+                var user_email = $("#email").val();
+                var user_pass = $("#password").val();
+
+                // $.post("test.php",{name:user_name, email:user_email, pass:user_pass} ,function(text){
+                //     $("#result").html(text);
+                $.ajax({
+                    url:"test.php",
+                    data:{name:user_name, email:user_email,pass:user_pass},
+                    type:"POST",
+                    success:function(text){
+                        $("#result").html(text);
+                    }
+                });
+                });
+                document.getElementById("submit").reset();
+            });
+        
+</script>
+</body>
+</html>
